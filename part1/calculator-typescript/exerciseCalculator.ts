@@ -8,6 +8,32 @@ type Result = {
   average: number;
 };
 
+interface ExerciseValue {
+  target: number;
+  values: number[];
+}
+
+const parseExerciseArguments = (args: string[]): ExerciseValue => {
+  if (args.length < 4) throw new Error("Not enough arguments");
+  const [value1, value2, value3, ...values] = args;
+
+  let hours: number[] = [];
+
+  values.forEach((value) => {
+    console.log(value);
+    if (!isNaN(Number(value))) {
+      hours.push(Number(value));
+    } else {
+      throw new Error("Provided values were not numbers!");
+    }
+  });
+
+  return {
+    target: Number(value3),
+    values: hours,
+  };
+};
+
 function calculateExercises(dailyHours: number[], target: number): Result {
   const periodLength = dailyHours.length;
   const trainingDays = dailyHours.filter((h) => h > 0).length;
@@ -38,4 +64,10 @@ function calculateExercises(dailyHours: number[], target: number): Result {
   };
 }
 
-console.log(calculateExercises([3, 0, 2, 4.5, 0, 3, 1], 2));
+const exerciseExtractor = () => {
+  const { target, values } = parseExerciseArguments(process.argv);
+
+  console.log(calculateExercises(values, target));
+};
+
+exerciseExtractor();
