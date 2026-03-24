@@ -17,11 +17,12 @@ app.get("/bmi", (req, res) => {
     });
     return;
   }
+
   const bmi = calculateBmi(Number(weight), Number(height));
 
   res.json({ height, weight, bmi });
 });
 
-app.listen("3000", () => {
-  console.log("server running on http://localhost:3000");
+app.listen("3003", () => {
+  console.log("server running on http://localhost:3003");
 });

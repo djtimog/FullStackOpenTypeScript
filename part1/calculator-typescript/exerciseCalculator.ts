@@ -17,7 +17,9 @@ const parseExerciseArguments = (args: string[]): ExerciseValue => {
   if (args.length < 4) throw new Error("Not enough arguments");
   const [value1, value2, value3, ...values] = args;
 
-  let hours: number[] = [];
+  console.log(value1, value2);
+
+  const hours: number[] = [];
 
   values.forEach((value) => {
     console.log(value);
