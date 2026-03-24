@@ -36,7 +36,10 @@ const parseExerciseArguments = (args: string[]): ExerciseValue => {
   };
 };
 
-function calculateExercises(dailyHours: number[], target: number): Result {
+export function calculateExercises(
+  dailyHours: number[],
+  target: number,
+): Result {
   const periodLength = dailyHours.length;
   const trainingDays = dailyHours.filter((h) => h > 0).length;
   const average = dailyHours.reduce((sum, h) => sum + h, 0) / periodLength;
@@ -71,5 +74,6 @@ const exerciseExtractor = () => {
 
   console.log(calculateExercises(values, target));
 };
-
-exerciseExtractor();
+if (require.main === module) {
+  exerciseExtractor();
+}
